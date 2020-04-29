@@ -12,4 +12,9 @@ public class InfiniteArithmeticCollection extends Collection{
         return element >= first && element % difference == first % difference;
     }
 
+    @Override
+    public int intersetion() {
+        return 0;
+    }
+
 }

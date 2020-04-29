@@ -5,7 +5,7 @@ public class ElementCollection extends Collection {
     private Set<Integer> elements;
 
     public ElementCollection() {
-         elements = new HashSet<>();
+        elements = new HashSet<>();
     }
 
     public void add(int element) {
@@ -15,6 +15,15 @@ public class ElementCollection extends Collection {
     @Override
     public boolean contains(int element) {
         return elements.contains(element);
+    }
 
+    @Override
+    public int intersetion() {
+        return 0;
+    }
+
+    protected Set<Integer> getElements() {
+        return elements;
+    }
 
 }

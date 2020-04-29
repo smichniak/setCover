@@ -13,4 +13,13 @@ public class FiniteArithmeticCollection extends Collection {
     public boolean contains(int element) {
         return element >= first && element <= maximum && element % difference == first % difference;
     }
+
+    @Override
+    public int intersetion() {
+        return 0;
+    }
+
+    public int getMaximum() {
+        return maximum;
+    }
 }
