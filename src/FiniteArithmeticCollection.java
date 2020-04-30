@@ -1,3 +1,6 @@
+import java.util.Set;
+import java.util.HashSet;
+
 public class FiniteArithmeticCollection extends Collection {
     private int first;
     private int difference;
@@ -15,11 +18,28 @@ public class FiniteArithmeticCollection extends Collection {
     }
 
     @Override
-    public int intersetion() {
-        return 0;
+    public Set<Integer> intersection(Set<Integer> collection) {
+        Set<Integer> intersection = new HashSet<>();
+        int length = (maximum - first) / difference;
+        if (collection.size() < length) {
+            for (int element : collection) {
+                if (this.contains(element)) {
+                    intersection.add(element);
+                }
+            }
+        } else {
+            for (int element = first; element <= maximum; element += difference) {
+                if (collection.contains(element)) {
+                    intersection.add(element);
+                }
+            }
+        }
+        return intersection;
     }
 
     public int getMaximum() {
         return maximum;
     }
+
+
 }

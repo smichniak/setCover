@@ -18,7 +18,7 @@ public class ElementCollection extends Collection {
     }
 
     @Override
-    public int intersetion() {
+    public int intersetion(ElementCollection collection) {
         return 0;
     }
 

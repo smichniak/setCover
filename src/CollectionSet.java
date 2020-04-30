@@ -2,12 +2,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CollectionSet extends Collection{
-    private ElementCollection elementCollection;
+    public Set<Integer> elementCollection;
     private Set<FiniteArithmeticCollection> finiteArithmetic;
     private Set<InfiniteArithmeticCollection> infiniteArithmetic;
 
     public CollectionSet() {
-        elementCollection = new ElementCollection();
+        elementCollection = new HashSet<>();
         finiteArithmetic = new HashSet<>();
         infiniteArithmetic = new HashSet<>();
     }
@@ -30,21 +30,40 @@ public class CollectionSet extends Collection{
         return false;
     }
 
+    //TODO
+    //CollectionToCover in argument instead od Set
     @Override
-    public int intersetion() {
-        return 0;
+    public Set<Integer> intersection(Set<Integer> collection) {
+        Set<Integer> intersection = new HashSet<>(collection);
+        intersection.retainAll(elementCollection);
+        for (FiniteArithmeticCollection finiteCollection: finiteArithmetic) {
+            if (intersection.size() == collection.size()) {
+                break;
+            }
+            intersection.addAll(finiteCollection.intersection(collection));
+        }
+        for (InfiniteArithmeticCollection infiniteCollection: infiniteArithmetic) {
+            if (intersection.size() == collection.size()) {
+                break;
+            }
+            intersection.addAll(infiniteCollection.intersection(collection));
+        }
+        return intersection;
+
     }
 
-    public void addElement(int element) {
-        elementCollection.add(element);
+    public void addElements(Set<Integer> elementCollection) {
+        this.elementCollection.addAll(elementCollection);
     }
 
-    public void addFinite(FiniteArithmeticCollection collection) {
-        finiteArithmetic.add(collection);
+    public void addfinite(FiniteArithmeticCollection finite) {
+        this.finiteArithmetic.add(finite);
     }
 
-    public void addInfinite(InfiniteArithmeticCollection collection) {
-        infiniteArithmetic.add(collection);
+    public void addInfinite(InfiniteArithmeticCollection infinite) {
+        this.infiniteArithmetic.add(infinite);
     }
+
+
 
 }

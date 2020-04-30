@@ -1,4 +1,7 @@
-public class InfiniteArithmeticCollection extends Collection{
+import java.util.Set;
+import java.util.HashSet;
+
+public class InfiniteArithmeticCollection extends Collection {
     private int first;
     private int difference;
 
@@ -13,8 +16,15 @@ public class InfiniteArithmeticCollection extends Collection{
     }
 
     @Override
-    public int intersetion() {
-        return 0;
-    }
+    public Set<Integer> intersection(Set<Integer> collection) {
+        Set<Integer> intersection = new HashSet<>();
+        for (int element : collection) {
+            if (this.contains(element)) {
+                intersection.add(element);
+            }
+        }
 
+        return intersection;
+    }
 }
+
