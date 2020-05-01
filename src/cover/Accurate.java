@@ -1,3 +1,5 @@
+package cover;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +15,8 @@ public class Accurate extends Algorithm {
         if (toCover.covered() || startingIndex == collectionFamily.size()) {
             return new ArrayList<>();
         }
+        //TODO
+        //If intersection empty, withoutFirst without copying
 
         Set<Integer> copy = new HashSet<>(toCover.getNotCovered());
         int max = toCover.getMaximum();

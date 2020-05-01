@@ -1,3 +1,5 @@
+package cover;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

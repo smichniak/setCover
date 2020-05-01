@@ -1,3 +1,5 @@
+package cover;
+
 import java.util.ArrayList;
 
 public abstract class Algorithm {
