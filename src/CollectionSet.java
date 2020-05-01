@@ -1,8 +1,8 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class CollectionSet extends Collection{
-    public Set<Integer> elementCollection;
+public class CollectionSet extends Collection {
+    private Set<Integer> elementCollection;
     private Set<FiniteArithmeticCollection> finiteArithmetic;
     private Set<InfiniteArithmeticCollection> infiniteArithmetic;
 
@@ -17,12 +17,12 @@ public class CollectionSet extends Collection{
         if (elementCollection.contains(element)) {
             return true;
         }
-        for (FiniteArithmeticCollection collection: finiteArithmetic) {
+        for (FiniteArithmeticCollection collection : finiteArithmetic) {
             if (collection.contains(element)) {
                 return true;
             }
         }
-        for (InfiniteArithmeticCollection collection: infiniteArithmetic) {
+        for (InfiniteArithmeticCollection collection : infiniteArithmetic) {
             if (collection.contains(element)) {
                 return true;
             }
@@ -36,13 +36,13 @@ public class CollectionSet extends Collection{
     public Set<Integer> intersection(Set<Integer> collection) {
         Set<Integer> intersection = new HashSet<>(collection);
         intersection.retainAll(elementCollection);
-        for (FiniteArithmeticCollection finiteCollection: finiteArithmetic) {
+        for (FiniteArithmeticCollection finiteCollection : finiteArithmetic) {
             if (intersection.size() == collection.size()) {
                 break;
             }
             intersection.addAll(finiteCollection.intersection(collection));
         }
-        for (InfiniteArithmeticCollection infiniteCollection: infiniteArithmetic) {
+        for (InfiniteArithmeticCollection infiniteCollection : infiniteArithmetic) {
             if (intersection.size() == collection.size()) {
                 break;
             }
@@ -52,18 +52,16 @@ public class CollectionSet extends Collection{
 
     }
 
-    public void addElements(Set<Integer> elementCollection) {
-        this.elementCollection.addAll(elementCollection);
+    public void addBuffer(int[] buffer) {
+        if (buffer[2] != 0) {
+            if (buffer[1] == 0) {
+                elementCollection.add(buffer[2]);
+            } else if (buffer[0] == 0) {
+                infiniteArithmetic.add(new InfiniteArithmeticCollection(buffer[1], -buffer[2]));
+            } else {
+                finiteArithmetic.add(new FiniteArithmeticCollection(buffer[0], -buffer[1], -buffer[2]));
+            }
+        }
+
     }
-
-    public void addfinite(FiniteArithmeticCollection finite) {
-        this.finiteArithmetic.add(finite);
-    }
-
-    public void addInfinite(InfiniteArithmeticCollection infinite) {
-        this.infiniteArithmetic.add(infinite);
-    }
-
-
-
 }

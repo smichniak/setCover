@@ -4,3 +4,7 @@
 setCover.iml
 
 out/production/setCover/
+
+po-2020-testy/
+
+test.sh
