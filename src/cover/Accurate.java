@@ -10,41 +10,47 @@ public class Accurate extends Algorithm {
         return coverAux(toCover, collectionFamily, 0);
     }
 
-
+    //W każdym wywołaniu rozważamy, czy uwzględnić w pokryciu zbiór na pozycji startingIndex
     private ArrayList<Integer> coverAux(ToCover toCover, ArrayList<SetCollection> collectionFamily, int startingIndex) {
         if (startingIndex == collectionFamily.size()) {
+            //Doszliśmy do końca rodziny, nie mamy więcej zbiorów
             return new ArrayList<>();
         }
         Set<Integer> intersection = collectionFamily.get(startingIndex).intersection(toCover.getNotCovered());
 
         if (intersection.size() == 0) {
+            //Przy pusty przecięciu na pewno nie chcemy skorzystać z aktualnego zbioru
             return coverAux(toCover, collectionFamily, startingIndex + 1);
         }
 
+        //Kopiujemy zbiór, bo w różnych wywołaniach będzie ulegał różnym modyfikacjom
         Set<Integer> copy = new HashSet<>(toCover.getNotCovered());
         ToCover toCoverCopy = new ToCover(copy);
 
         toCover.cover(intersection);
-        ArrayList<Integer> withFirst = new ArrayList<>();
+        ArrayList<Integer> withCurrent = new ArrayList<>();
 
         if (toCover.covered()) {
-            withFirst.add(startingIndex + 1);
-            return withFirst;
+            //Udało się pokryć cały zbiór aktualnym, jest on wynikiem, bo dalsze pokrycia nie mogą być krótsze niż 1
+            //i mniejsze leksykograficznie
+            withCurrent.add(startingIndex + 1);
+            return withCurrent;
         }
 
-        withFirst = coverAux(toCover, collectionFamily, startingIndex + 1);
-        ArrayList<Integer> withoutFirst = coverAux(toCoverCopy, collectionFamily, startingIndex + 1);
+        withCurrent = coverAux(toCover, collectionFamily, startingIndex + 1);
 
-        if (withFirst.size() == 0) {
-            return withoutFirst;
+        if (withCurrent.size() == 0) {
+            //Jeśli nie da się pokryć zbioru z uwzględnieniem aktualnego, to na pewno nie da się go pokryć bez niego
+            return new ArrayList<>();
         }
 
-        withFirst.add(0, startingIndex + 1);
+        withCurrent.add(0, startingIndex + 1);
+        ArrayList<Integer> withoutCurrent = coverAux(toCoverCopy, collectionFamily, startingIndex + 1);
 
-        if (withoutFirst.size() == 0) {
-            return withFirst;
+        if (withoutCurrent.size() == 0) {
+            return withCurrent;
         }
-        return withFirst.size() <= withoutFirst.size() ? withFirst : withoutFirst;
+        return withCurrent.size() <= withoutCurrent.size() ? withCurrent : withoutCurrent;
     }
 
 }

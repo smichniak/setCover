@@ -2,6 +2,7 @@ package cover;
 
 
 public class FiniteArithmetic extends ArithmeticCollection {
+    //Skończony ciąg arytmetyczny, którego elementy są <= od maximum
     private int maximum;
 
     public FiniteArithmetic(int first, int difference, int maximum) {

@@ -2,6 +2,7 @@ package cover;
 
 
 public class ArithmeticCollection extends Collection {
+    //Ciąg arytmetyczny z początkiem first i różnicą difference
     private int first;
     private int difference;
 
