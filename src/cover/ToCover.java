@@ -3,19 +3,17 @@ package cover;
 import java.util.Set;
 import java.util.HashSet;
 
-public class CollectionToCover extends FiniteArithmeticCollection {
+public class ToCover {
     private Set<Integer> notCovered;
 
-    public CollectionToCover(int max) {
-        super(1, 1, max);
+    public ToCover(int max) {
         notCovered = new HashSet<>();
         for (int i = 1; i <= max; ++i) {
             notCovered.add(i);
         }
     }
 
-    public CollectionToCover(int max, Set<Integer> notCovered) {
-        super(1, 1, max);
+    public ToCover(Set<Integer> notCovered) {
         this.notCovered = notCovered;
     }
 

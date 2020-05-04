@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Naive extends Algorithm {
     @Override
-    public ArrayList<Integer> cover(CollectionToCover toCover, ArrayList<CollectionSet> collectionFamily) {
+    public ArrayList<Integer> cover(ToCover toCover, ArrayList<SetCollection> collectionFamily) {
         ArrayList<Integer> result = new ArrayList<>();
         for (int i = 0; i < collectionFamily.size() && !toCover.covered(); ++i) {
             Set<Integer> intersection = collectionFamily.get(i).intersection(toCover.getNotCovered());

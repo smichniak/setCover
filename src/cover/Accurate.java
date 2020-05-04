@@ -6,12 +6,12 @@ import java.util.Set;
 
 public class Accurate extends Algorithm {
     @Override
-    public ArrayList<Integer> cover(CollectionToCover toCover, ArrayList<CollectionSet> collectionFamily) {
+    public ArrayList<Integer> cover(ToCover toCover, ArrayList<SetCollection> collectionFamily) {
         return coverAux(toCover, collectionFamily, 0);
     }
 
 
-    private ArrayList<Integer> coverAux(CollectionToCover toCover, ArrayList<CollectionSet> collectionFamily, int startingIndex) {
+    private ArrayList<Integer> coverAux(ToCover toCover, ArrayList<SetCollection> collectionFamily, int startingIndex) {
         if (startingIndex == collectionFamily.size()) {
             return new ArrayList<>();
         }
@@ -22,8 +22,7 @@ public class Accurate extends Algorithm {
         }
 
         Set<Integer> copy = new HashSet<>(toCover.getNotCovered());
-        int max = toCover.getMaximum();
-        CollectionToCover toCoverCopy = new CollectionToCover(max, copy);
+        ToCover toCoverCopy = new ToCover(copy);
 
         toCover.cover(intersection);
         ArrayList<Integer> withFirst = new ArrayList<>();

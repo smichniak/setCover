@@ -8,3 +8,11 @@ out/production/setCover/
 po-2020-testy/
 
 test.sh
+
+src/test/
+
+.DS_Store
+
+out/
+
+src/big/

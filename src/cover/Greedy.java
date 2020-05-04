@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class Greedy extends Algorithm {
     @Override
-    public ArrayList<Integer> cover(CollectionToCover toCover, ArrayList<CollectionSet> collectionFamily) {
+    public ArrayList<Integer> cover(ToCover toCover, ArrayList<SetCollection> collectionFamily) {
         ArrayList<Integer> result = new ArrayList<>();
         Set<Integer> emptyIntersection = new HashSet<>();
         while (!toCover.covered() && emptyIntersection.size() < collectionFamily.size()) {
